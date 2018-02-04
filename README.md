@@ -14,7 +14,7 @@ In this part we connetc ROS and Qtcreator( QtGui, QtCore, Qt Designer).
 
 2.1. Check cmake version:
 
-    `cmake_minimum_required(VERSION 2.8.3)`
+    cmake_minimum_required(VERSION 2.8.3)
 2.2. Set project name:    
 
        set(PROJECT YOUR_PROJECT_NAME)
