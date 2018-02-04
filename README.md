@@ -10,7 +10,7 @@ In this project I'll connect ROS and QtCreator. First of all we need it's rewrit
 
 ### 2. CMakeFiles
 
-In this part we connetc ROS and Qtcreator( QtGui, QtCore, Qt Designer).
+In this part we connect ROS and Qtcreator( QtGui, QtCore, Qt Designer).
 
    2.1. Check cmake version:
 
