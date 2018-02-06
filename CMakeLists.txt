@@ -4,12 +4,14 @@ set(PROJECT drone)
 project(${PROJECT})
 
 set(SOURCES
+        drone.cpp
         main.cpp
         mainwindow.cpp
         ControllerNode.cpp
 )
 
 set(MOC_HEADERS
+        drone.h
         mainwindow.h
         ControllerNode.h
 )
