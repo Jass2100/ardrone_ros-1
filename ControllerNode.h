@@ -12,7 +12,7 @@
 #include <sensor_msgs/Imu.h>
 #include <ros/callback_queue.h>
 
-class ControllerNode{
+class ControllerNode {
 
     ros::NodeHandle nh;
     ros::Subscriber gr_sub;

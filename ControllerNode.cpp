@@ -2,8 +2,8 @@
 
 ControllerNode::ControllerNode(){
 
-    current_x_coord = 0;
-    current_y_coord = 0;
+    std::cout << "create drone class" << std::endl;
+    gr_sub = nh.subscribe("/ground_truth/state", 1000, &ControllerNode::goal_callback, this);
     vel_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 
 }
@@ -23,8 +23,11 @@ double ControllerNode::CalculateYaw(double x, double y, double z, double w) {
 
 
 void ControllerNode::MoveTo(double x, double y) {
+
     goal_x = x;
     goal_y = y;
+    std::cout << goal_x << std::endl;
+    std::cout << goal_y << std::endl;
 }
 
 
@@ -56,6 +59,8 @@ void ControllerNode::Control() {
         length = std::sqrt((goal_x-current_x_coord)*(goal_x-current_x_coord)
                 +(goal_y-current_y_coord)*(goal_y-current_y_coord));
 
+        std::cout << length << std::endl;
+
         double delta_x, delta_y;
         delta_x = goal_x - current_x_coord;
         delta_y = goal_y - current_y_coord;
@@ -69,11 +74,13 @@ void ControllerNode::Control() {
         if (std::abs(course_angle) > 180) course_angle = course_angle -
                                                     course_angle/std::abs(course_angle) * 360;
 
+        std::cout << course_angle << std::endl;
+
         double base_speed;
         base_speed = 1 * tanh(length) * cos (course_angle);
         if (std::abs(base_speed) > 1) base_speed = base_speed/std::abs(base_speed);
         //if (std::abs(base_speed) < 0.4 && std::abs(length) > 1) base_speed = 1;
-        std::cout << base_speed << std::endl;
+        //std::cout << base_speed << std::endl;
 
         double angular_speed;
         angular_speed = 0.2 * course_angle + sin(course_angle) * base_speed / length;
